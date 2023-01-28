@@ -36,7 +36,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs=$request->validate([
+            'title'=>'required|max:255',
+            'content'=>'required|max:1000',
+            'file'=>'file|max:1024'
+        ]);
+        $post=new Post();
+        $post->title=$request->title;
+        $post->content=$request->content;
+        $post->user_id=auth()->user()->id;
+        if(request('file')){
+            $original = request()->file('file')->getClientOriginalName();
+            // 日時追加
+            $name = date('Ymd_His').'_'.$original;
+            request()->file('file')->move('storage/files', $name);
+            $post->file = $name;
+        }
+        $post->save();
+        return redirect()->route('post.create')->with('message', '投稿を作成しました');
     }
 
     /**
