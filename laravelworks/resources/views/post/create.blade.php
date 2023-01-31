@@ -22,7 +22,7 @@
     
                         <div class="w-full flex flex-col">
                             <label for="content" class="font-semibold leading-none mt-4">内容</label>
-                            <textarea name="content" class="w-auto py-2 placeholder-gray-300 border border-gray-300 rounded-md" id="content" cols="30" rows="10">{{old('content')}}"</textarea>
+                            <textarea name="content" class="w-auto py-2 placeholder-gray-300 border border-gray-300 rounded-md" id="content" cols="30" rows="10">{{old('content')}}</textarea>
                         </div>
     
                         <div class="w-full flex flex-col">

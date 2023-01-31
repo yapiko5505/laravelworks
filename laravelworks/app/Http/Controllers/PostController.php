@@ -89,7 +89,26 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $inputs=$request->validate([
+            'title'=>'required|max:255',
+            'content'=>'required|max:1000',
+            'file'=>'file|max:1024'
+        ]);
+
+        $post->title=$request->title;
+        $post->content=$request->content;
+
+        if(request('file')){
+            $original=request()->file('file')->getClientOriginalName();
+            // 日時追加
+            $name=date('Ymd_His').'_'.$original;
+            request()->file('file')->move('storage/files', $name);
+            $post->file=$name;
+        }
+
+        $post->save();
+
+        return redirect()->route('post.show', $post)->with('message', '投稿を更新しました');
     }
 
     /**
@@ -100,6 +119,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('post.index')->with('message', '投稿を削除しました');
     }
 }

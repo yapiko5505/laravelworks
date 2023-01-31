@@ -11,8 +11,9 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="mx-4 sm:p-8">
-                    <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
                         @csrf
+                        @method('patch')
                         <div class="md:flex items-center mt-8">
                             <div class="w-full flex flex-col">
                                 <label for="title" class="font-semibold leading-none mt-4">件名</label>
@@ -22,7 +23,7 @@
     
                         <div class="w-full flex flex-col">
                             <label for="content" class="font-semibold leading-none mt-4">内容</label>
-                            <textarea name="content" class="w-auto py-2 placeholder-gray-300 border border-gray-300 rounded-md" id="content" cols="30" rows="10">{{old('content', $post->content)}}"</textarea>
+                            <textarea name="content" class="w-auto py-2 placeholder-gray-300 border border-gray-300 rounded-md" id="content" cols="30" rows="10">{{old('content', $post->content)}}</textarea>
                         </div>
     
                         <div class="w-full flex flex-col">
