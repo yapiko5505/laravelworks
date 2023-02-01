@@ -40,6 +40,15 @@
                         </div>
                     </div>
                     <!-- div追加部分 -->
+                    <div class="mt-4 mb-12">
+                        <form method="post" action="{{route('comment.store')}}">
+                            @csrf
+                            <input type="hidden" name='post_id' value="{{$post->id}}">
+                            <textarea name="content" class="bg-white w-full  rounded-2xl px-4 mt-4 py-4 shadow-lg hover:shadow-2xl transition duration-500" id="content" cols="30" rows="3" placeholder="コメントを入力してください">{{old('content')}}</textarea>
+                            <x-primary-button class="float-right mr-4 mb-12">コメントする</x-primary-button>
+                        </form>
+                    </div>
+                    <!-- 追加部分終わり -->
                 </div>
             </div>
         </div>
