@@ -9,3 +9,19 @@
 .btnsetp {
     @apply font-bold text-base text-center bg-pink-600;
 }
+
+.btnstpe {
+    @apply bg-green-600;
+}
+
+.btnstpe2 {
+    @apply float-right bg-green-400;
+}
+
+.btnsetb {
+    @apply bg-blue-700 float-right;
+}
+
+.btnsetr {
+    @apply bg-red-700 float-right ml-4;
+}
