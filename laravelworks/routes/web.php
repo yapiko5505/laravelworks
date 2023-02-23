@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +32,34 @@ Route::controller(ContactController::class)->group(function(){
     Route::post('contact/store','store')->name('contact.store');
 });
 
+// ログイン後の通常のユーザー画面
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('post/comment/store', [CommentController::class,'store'])->name('comment.store');
+    Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
+    Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
+    Route::resource('post', PostController::class);
+
+    // 管理者用画面
+    Route::middleware(['can:admin'])->group(function(){
+
+        Route::get('address/index',[AddressController::class, 'index'])->name('address.index');
+
+    });
+
+    
+    
+    
 });
 
-Route::post('post/comment/store', [CommentController::class,'store'])->name('comment.store');
-Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
-Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
-Route::resource('post', PostController::class);
+
+
+
+
+
+
+
+
 
 
 require __DIR__.'/auth.php';

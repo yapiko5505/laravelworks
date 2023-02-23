@@ -78,6 +78,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('post.edit', compact('post'));
     }
 
@@ -90,6 +91,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update', $post);
         $inputs=$request->validate([
             'title'=>'required|max:255',
             'content'=>'required|max:1000',
@@ -120,6 +122,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         $post->delete();
         return redirect()->route('post.index')->with('message', '投稿を削除しました');
     }
