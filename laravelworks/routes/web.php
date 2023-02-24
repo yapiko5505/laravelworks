@@ -33,7 +33,7 @@ Route::controller(ContactController::class)->group(function(){
 });
 
 // ログイン後の通常のユーザー画面
-Route::middleware('auth')->group(function () {
+Route::middleware('verified')->group(function () {
 
     Route::post('post/comment/store', [CommentController::class,'store'])->name('comment.store');
     Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
@@ -42,13 +42,8 @@ Route::middleware('auth')->group(function () {
 
     // 管理者用画面
     Route::middleware(['can:admin'])->group(function(){
-
         Route::get('address/index',[AddressController::class, 'index'])->name('address.index');
-
     });
-
-    
-    
     
 });
 
