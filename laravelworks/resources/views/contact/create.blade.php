@@ -6,6 +6,7 @@
                     お問い合わせ
                 </h1>
                
+                
                 <x-message :message="session('message')" />
 
                 <form method="post" action="{{route('contact.store')}}" enctype="multipart/form-data">

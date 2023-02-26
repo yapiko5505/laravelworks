@@ -4,6 +4,7 @@
             コメントした投稿の一覧
         </h2>
 
+        <x-input-error class="mb-4" :messages="$errors->all()" />
         <x-message :message="session('message')" />
 
     </x-slot>

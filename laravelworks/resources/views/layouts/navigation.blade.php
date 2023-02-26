@@ -56,6 +56,10 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
+                            <!-- プロフィール追加 -->
+                            <x-dropdown-link :href="route('address.edit', auth()->user()->id)">
+                                プロフィール変更
+                            </x-dropdown-link>
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -106,6 +110,12 @@
                 <div class="font-medium text-base text-gray-800">@if(Auth::check()){{ Auth::user()->name }}@endif</div>
                 <div class="font-medium text-sm text-gray-500">@if(Auth::check()){{ Auth::user()->email }}@endif</div>
             </div>
+           
+           
+           
+           
+           
+           
 
             <div class="mt-3 space-y-1">
                
@@ -116,6 +126,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
+                    
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">

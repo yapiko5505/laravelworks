@@ -40,6 +40,10 @@ Route::middleware('verified')->group(function () {
     Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
     Route::resource('post', PostController::class);
 
+    // プロフィール編集用
+    Route::get('address/{user}/edit', [AddressController::class, 'edit'])->name('address.edit');
+    Route::patch('address/{user}', [AddressController::class, 'update'])->name('address.update');
+
     // 管理者用画面
     Route::middleware(['can:admin'])->group(function(){
         Route::get('address/index',[AddressController::class, 'index'])->name('address.index');

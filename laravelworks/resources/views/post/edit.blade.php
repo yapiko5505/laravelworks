@@ -38,7 +38,7 @@
                             </div>
                         </div>
 
-                        <x-primary-button class="mt-4">
+                        <x-primary-button class="btnstpe">
                             送信する
                         </x-primary-button>
                     
