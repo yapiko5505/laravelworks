@@ -1,5 +1,5 @@
 ﻿# laravelworks
-Laravelを使用した掲示板です。
+Laravelを使用した社内用掲示板です。
 
 # 使用言語
 HTML&CSS、PHP、JavaScript
