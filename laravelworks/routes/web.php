@@ -46,7 +46,13 @@ Route::middleware('verified')->group(function () {
 
     // 管理者用画面
     Route::middleware(['can:admin'])->group(function(){
+        // ユーザー一覧
         Route::get('address/index',[AddressController::class, 'index'])->name('address.index');
+        Route::delete('address/{user}',[AddressController::class,'delete'])->name('address.delete');
+
+        // 追加
+        Route::patch('roles/{user}/attach',[RoleController::class,'attach'])->name('role.attach');
+        Route::patch('roles/{user}/detach',[RoleController::class,'detach'])->name('role.detach');
     });
     
 });

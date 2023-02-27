@@ -56,4 +56,13 @@ class AddressController extends Controller
         $user->update($inputs);
         return back()->with('message', '情報を更新しました。');
     }
+
+    public function delete(User $user){
+        if($user->avatar!=='user_default.jpg'){
+            $oldavatar='public/avatar/'.$user->avatar;
+            Storage::delete($oldavatar);
+        }
+        $user->delete();
+        return back()->with('message', 'ユーザーを削除しました。');
+    }
 }
