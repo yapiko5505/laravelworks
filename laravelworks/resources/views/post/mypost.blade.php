@@ -34,7 +34,7 @@
                             <hr class="w-full">
                             <p class="mt-4 text-gray-600 py-4">{{$post->content}}</p>
                             <div class="text-sm font-semibold flex flex-row-reverse">
-                                <p>{{$post->user->name}}• {{$post->created_at->diffForHumans()}}</p>
+                                <p>{{$post->user->name??'削除されたユーザー'}}• {{$post->created_at->diffForHumans()}}</p>
                             </div>
                             <!-- 追加部分 -->
                             <hr class="w-full mb-2">

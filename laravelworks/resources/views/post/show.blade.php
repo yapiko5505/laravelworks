@@ -42,7 +42,7 @@
                             </div>
                         @endif
                         <div class="text-sm font-semibold flex flex-row-reverse">
-                            <p> {{ $post->user->name }} • {{$post->created_at->diffForHumans()}}</p>
+                            <p> {{ $post->user->name??'削除されたユーザー' }} • {{$post->created_at->diffForHumans()}}</p>
                         </div>
                     </div>
                     <!-- コメント表示部分 -->
@@ -51,10 +51,10 @@
                         {{$comment->content}}
                         <div class="text-sm font-semibold flex flex-row-reverse">
                             <!-- クラスを変更 -->
-                            <p class="float-left pt-4">{{ $comment->user->name}}・{{$comment->created_at->diffForHumans()}}</p>
+                            <p class="float-left pt-4">{{ $comment->user->name??'削除されたユーザー'}}・{{$comment->created_at->diffForHumans()}}</p>
                             <span class="rounded-full w-12 h-12">
                                 <!-- アバター表示 -->
-                                <img src="{{asset('storage/avatar/'.($comment->user->avatar??'user_default.jpg'))}}">
+                                <img src="{{asset('storage/avatar/'.($comment->user->avatar??'user_default.jpg'))}}" class="rounded-circle" style="width:40px;height:40px;">
                             </span>
                         </div>
                     </div>

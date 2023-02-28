@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class AddressController extends Controller
 {
@@ -18,7 +19,8 @@ class AddressController extends Controller
     public function edit(User $user){
 
         $this->authorize('update', $user);
-        return view('address.edit', compact('user'));
+        $roles=Role::all();
+        return view('address.edit', compact('user', 'roles'));
     }
 
     public function update(User $user, Request $request){
@@ -58,6 +60,7 @@ class AddressController extends Controller
     }
 
     public function delete(User $user){
+        $user->roles()->detach();
         if($user->avatar!=='user_default.jpg'){
             $oldavatar='public/avatar/'.$user->avatar;
             Storage::delete($oldavatar);
